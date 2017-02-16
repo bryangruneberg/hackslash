@@ -1,0 +1,7 @@
+
+# An example protecting "/user" and "/search"
+SetEnvIf Request_URI ^/user.* SET_PASSWORD=TRUE
+SetEnvIf Request_URI ^/search.* SET_PASSWORD=TRUE
+
+# This line must go right at the end of the .htaccess file
+RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization},L]
